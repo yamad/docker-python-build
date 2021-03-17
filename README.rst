@@ -6,6 +6,10 @@ environment. It is intended to make *any* version of CPython available as
 needed. Ubuntu packages are usually only available for a subset of Python
 versions.
 
+
+Usage
+-----
+
 The complete built python environment is stored in ``/opt/python``
 inside the docker image. To use it in another Dockerfile, use the
 following commands::
@@ -20,13 +24,23 @@ Or you can copy the files out to your host computer::
   docker cp $id:/opt/python local-python-dir
   docker rm -v $id
 
-To create a new image, specify the desired python version like so::
+
+Building
+--------
+
+To use github to build a new version, create a tag and push it::
+
+  git tag 3.8.5-1.0
+  git push --tag
+
+To build an image locally, clone the repo and specify the desired
+python version like so::
 
   docker build --build-arg PYTHON_VERSION=3.8.5 -t jyamad/python-build:3.8.5-1.0 .
   docker push jyamad/python-build:3.8.5-1.0
 
 Version Names
-=============
+-------------
 
 The build versions are the python version (e.g. 3.8.5) followed by a build spec
 (e.g. 1.0), separated by a dash. For instance, ``3.8.5-1.0`` may be followed by
