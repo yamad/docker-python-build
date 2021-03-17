@@ -3,6 +3,7 @@ ARG UBUNTU_VERSION=18.04
 FROM ubuntu:${UBUNTU_VERSION} as build-python
 
 ARG PYTHON_VERSION=3.8.5
+ARG BUILD_VERSION=1.0
 
 # turn off prompts for tzdata
 ENV DEBIAN_FRONTEND=noninteractive
@@ -11,7 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 LABEL maintainer="Jason Yamada-Hanff <jyamada1@gmail.com>" \
       label="build-python" \
-      version="1.0" \
+      version="${BUILD_VERSION}" \
       version_python="${PYTHON_VERSION}" \
       description="Build CPython"
 

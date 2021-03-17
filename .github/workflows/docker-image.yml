@@ -33,4 +33,5 @@ jobs:
         push: true
         build-args: |
           PYTHON_VERSION=${{ steps.vars.outputs.python_version }}
+          BUILD_VERSION=${{ steps.vars.outputs.build_version }}
         tags: jyamad/python-build:${{ steps.vars.outputs.tag }}
